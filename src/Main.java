@@ -1,11 +1,9 @@
 import java.io.*;
-import java.net.URL;
-import javax.sound.sampled.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        File file = new File("MusicXML/One_Summer's_Day.musicxml");
-        File output = new File ("aaaa.midi");
+        File file = new File("MusicXML/Bohemian_Rhapsody.musicxml");
+        File output = new File ("aaaa.mid");
         MusicXMLFileHelper.xml2midi(file,output);
     }
 }
