@@ -52,7 +52,7 @@ public class MusicXMLFileHelper {
 
         Sequence midiSequence = listener.getSequence();
         Midi2WavRenderer renderer = new Midi2WavRenderer();
-        MidiFileManager.save(midiSequence, new File("aaaa.mid"));
+        //MidiFileManager.save(midiSequence, new File("aaaa.mid"));
         renderer.createWavFile(midiSequence, outputFile);
     }
 }
