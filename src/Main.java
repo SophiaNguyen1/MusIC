@@ -2,8 +2,9 @@ import java.io.*;
 
 /* Where the program breaks:
  * - multiple voices starting at different spots
- * - time signatures that aren't 4/4 (just plays at the wrong tempo)
+ * - //time signatures that aren't 4/4 (just plays at the wrong tempo)// FIXED
  * - uneven subdivisions of notes with a lot of subdivision (9 tuplets don't work but 6 and under work)
+ * - tempo markings with notes other than quarter notes
  */
 
 public class Main {
