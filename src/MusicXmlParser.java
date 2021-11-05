@@ -534,6 +534,7 @@ public final class MusicXmlParser extends Parser {
 	/**
 	 * parses MusicXML note Element
 	 * CHANGED: Octave number is increased by 1
+	 * CHANGED: Accounted for time signature change
 	 * 
 	 * @param noteElement
 	 *            is the note Element to parse
