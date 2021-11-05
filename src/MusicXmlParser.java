@@ -136,6 +136,7 @@ public final class MusicXmlParser extends Parser {
 
 	private byte curVelocity = DefaultNoteSettingsManager.getInstance().getDefaultOnVelocity();
 	private byte beatsPerMeasure;
+	private byte beatType;
 	private byte divisionsPerBeat;
 	private int currentVoice;
 	private byte currentLayer;
@@ -218,6 +219,7 @@ public final class MusicXmlParser extends Parser {
 
 		// Set up MusicXML default values
 		beatsPerMeasure = 1;
+		beatType = 1;
 		divisionsPerBeat = 1;
 		currentVoice = -1;
 		nextVoice = 0;
@@ -384,6 +386,7 @@ public final class MusicXmlParser extends Parser {
 			//Time-Signature
 			this.divisionsPerBeat = getByteValueOrDefault(attributes.getFirstChildElement("divisions"), this.divisionsPerBeat);
 			this.beatsPerMeasure = getByteValueOrDefault( getRecursiveFirstChildElement(attributes, "time", "beats"), this.beatsPerMeasure);
+			this.beatType = getByteValueOrDefault( getRecursiveFirstChildElement(attributes, "time", "beat-type"), this.beatType);
 		}
 		
 		Elements childs = musicDataRoot.getChildElements();
@@ -623,7 +626,7 @@ public final class MusicXmlParser extends Parser {
 		// duration
 		Element element_duration = noteElement.getFirstChildElement("duration");
 		double durationValue = Double.parseDouble(element_duration.getValue());
-		decimalDuration = durationValue / (divisionsPerBeat * beatsPerMeasure);
+		decimalDuration = (durationValue / (divisionsPerBeat * beatsPerMeasure))*((double)beatsPerMeasure/beatType);
 
 		// Tied Note
 		Element notations = noteElement.getFirstChildElement("notations");
