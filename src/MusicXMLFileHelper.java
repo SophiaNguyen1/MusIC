@@ -1,18 +1,8 @@
 import java.io.*;
 
-import nu.xom.Attribute;
-import nu.xom.Builder;
-import nu.xom.DocType;
-import nu.xom.Document;
-import nu.xom.Element;
-import nu.xom.Elements;
-import nu.xom.Node;
 import nu.xom.ParsingException;
-import nu.xom.ValidityException;
 
 import org.jfugue.midi.MidiFileManager;
-import org.jfugue.pattern.Pattern;
-import org.jfugue.player.Player;
 import org.jfugue.midi.MidiParserListener;
 
 import javax.sound.midi.InvalidMidiDataException;
