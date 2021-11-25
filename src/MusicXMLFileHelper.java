@@ -1,12 +1,16 @@
 import java.io.*;
 
+import nu.xom.MultipleParentException;
 import nu.xom.ParsingException;
 
+import org.jfugue.integration.MusicXmlParserListener;
 import org.jfugue.midi.MidiFileManager;
+import org.jfugue.midi.MidiParser;
 import org.jfugue.midi.MidiParserListener;
-//import org.jfugue.integration.MusicXmlParser;
+import org.jfugue.integration.MusicXmlParser;
 
 import javax.sound.midi.InvalidMidiDataException;
+import javax.sound.midi.MidiSystem;
 import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Sequence;
 import javax.xml.parsers.ParserConfigurationException;
@@ -33,7 +37,7 @@ public class MusicXMLFileHelper {
         return output;
     }
 
-    public static void xml2midi(File inputFile, File outputFile) throws MidiUnavailableException, InvalidMidiDataException, IOException, ParsingException, ParserConfigurationException {
+    public static void xml2wav(File inputFile, File outputFile) throws MidiUnavailableException, InvalidMidiDataException, IOException, ParsingException, ParserConfigurationException {
         MidiParserListener listener = new MidiParserListener();
 
         MusicXmlParser parser = new MusicXmlParser();
@@ -43,7 +47,23 @@ public class MusicXMLFileHelper {
 
         Sequence midiSequence = listener.getSequence();
         Midi2WavRenderer renderer = new Midi2WavRenderer();
-        //MidiFileManager.save(midiSequence, new File("aaaa.mid"));
-        renderer.createWavFile(midiSequence, outputFile);
+        //MidiFileManager.save(midiSequence, outputFile);
+        renderer.createWavFile(midiSequence,outputFile);
     }
+
+    public static void midi2wav(File inputFile, File outputFile) throws MidiUnavailableException, InvalidMidiDataException, IOException {
+        Midi2WavRenderer renderer = new Midi2WavRenderer();
+        renderer.createWavFile(MidiSystem.getSequence(inputFile),outputFile);
+    }
+/*
+    public static void midi2xml(File inputFile, File outputFile) throws InvalidMidiDataException, IOException {
+        MusicXmlParserListener listener = new MusicXmlParserListener();
+        MidiParser parser = new MidiParser();
+        parser.addParserListener(listener);
+        parser.parse(MidiSystem.getSequence(inputFile));
+        BufferedWriter out = new BufferedWriter(new PrintWriter(outputFile));
+        listener.getMusicXMLString();
+        out.write(listener.getMusicXMLString());
+        out.close();
+    }*/
 }
