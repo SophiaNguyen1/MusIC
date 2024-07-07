@@ -1,4 +1,4 @@
-# SE 101 Project: MusIC
+MusIC
 
 This project converts an image of sheet music into an audio format (WAV) which can be played directly from a Raspberry Pi.
 
